@@ -1,6 +1,7 @@
 import 'package:doc_app/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppTextButton extends StatelessWidget {
   final double? borderRadius;
   final Color? backgroundColor;
@@ -42,14 +43,17 @@ class AppTextButton extends StatelessWidget {
             vertical: verticalPadding?.h ?? 14.h,
           ),
         ),
-        fixedSize: WidgetStateProperty.all(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
-        ),
+        // fixedSize: WidgetStateProperty.all(
+        //   Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
+        // ),
       ),
       onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          buttonText,
+          style: textStyle,
+        ),
       ),
     );
   }

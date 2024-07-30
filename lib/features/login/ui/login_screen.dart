@@ -47,6 +47,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     verticalSpace(40),
                     AppTextButton(
+                      // buttonHeight: 56.h,
                       buttonText: "Login",
                       textStyle: TextStyles.font16WhiteSemiBold,
                       onPressed: () {
@@ -69,6 +70,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   void validateThenDoLogin(BuildContext context) {
+    //~ Check if the current state of the form is valid
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginStates(
             LoginRequestBody(
