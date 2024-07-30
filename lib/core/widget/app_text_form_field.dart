@@ -17,8 +17,10 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  final TextInputType? keyboardType;
   const AppTextFormField({
     super.key,
+    this.keyboardType,
     this.contentPadding,
     this.focusedBorder,
     this.enabledBorder,
@@ -36,6 +38,7 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: contentPadding ??

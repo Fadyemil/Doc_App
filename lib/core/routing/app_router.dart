@@ -6,6 +6,7 @@ import 'package:doc_app/features/home/ui/home_screen.dart';
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/login/ui/Login_screen.dart';
 import 'package:doc_app/features/onboarding/ui/onboarding_screen.dart';
+import 'package:doc_app/features/sign_Up/logic/cubit/sign_up_cubit.dart';
 import 'package:doc_app/features/sign_Up/ui/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,25 +19,42 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case Routes.loginScreen:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
-            child: const LoginScreen(),
-          ),
-        );
+        return funLoginScrren();
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
       case Routes.signUpScreen:
-        return MaterialPageRoute(builder: (context) => const SignUpScreen());
+        return funSignUpScreen();
       default:
-        return MaterialPageRoute(
-            builder: (context) => Scaffold(
-                  body: Center(
-                    child:
-                        Text(' No route found for this page ${settings.name}'),
-                  ),
-                ));
+        return funDefauitscreen(settings);
     }
+  }
+
+  MaterialPageRoute<dynamic> funDefauitscreen(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) => Scaffold(
+        body: Center(
+          child: Text(' No route found for this page ${settings.name}'),
+        ),
+      ),
+    );
+  }
+
+  MaterialPageRoute<dynamic> funLoginScrren() {
+    return MaterialPageRoute(
+      builder: (context) => BlocProvider(
+        create: (context) => getIt<LoginCubit>(),
+        child: const LoginScreen(),
+      ),
+    );
+  }
+
+  MaterialPageRoute<dynamic> funSignUpScreen() {
+    return MaterialPageRoute(
+      builder: (context) => BlocProvider(
+        create: (context) => getIt<SignupCubit>(),
+        child: const SignupScreen(),
+      ),
+    );
   }
 }
