@@ -1,11 +1,14 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:doc_app/core/di/dependency_injection.dart';
 import 'package:doc_app/core/routing/routes.dart';
 import 'package:doc_app/features/home/ui/home_screen.dart';
+import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/login/ui/Login_screen.dart';
 import 'package:doc_app/features/onboarding/ui/onboarding_screen.dart';
 import 'package:doc_app/features/sign_Up/ui/sign_up_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -15,7 +18,12 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: const LoginScreen(),
+          ),
+        );
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
