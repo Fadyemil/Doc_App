@@ -1,4 +1,4 @@
-import 'package:doc_app/features/login/data/login_request_body.dart';
+import 'package:doc_app/features/login/data/models/login_request_body.dart';
 import 'package:doc_app/features/login/data/repos/login_repo.dart';
 import 'package:doc_app/features/login/logic/cubit/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
