@@ -1,6 +1,8 @@
 import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/theme/styles.dart';
 import 'package:doc_app/core/widget/app_text_button.dart.dart';
+import 'package:doc_app/features/login/data/models/login_request_body.dart';
+import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/login/ui/widget/dont_have_account_text.dart';
 import 'package:doc_app/features/login/ui/widget/email_and_password.dart';
 import 'package:doc_app/features/login/ui/widget/login_bloc_listener.dart';
@@ -68,7 +70,12 @@ class LoginScreen extends StatelessWidget {
 
   void validateThenDoLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates();
+      context.read<LoginCubit>().emitLoginStates(
+            LoginRequestBody(
+              email: context.read<LoginCubit>().emailController.text,
+              password: context.read<LoginCubit>().passwordController.text,
+            ),
+          );
     }
   }
 }

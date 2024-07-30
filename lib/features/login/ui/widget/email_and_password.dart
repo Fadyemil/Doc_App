@@ -1,5 +1,8 @@
+import 'package:doc_app/core/helpers/app_regex.dart';
 import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/widget/app_text_form_field.dart';
+import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:doc_app/features/login/ui/widget/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_complete_project/core/helpers/app_regex.dart';
@@ -31,26 +34,32 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   void initState() {
     super.initState();
     passwordController = context.read<LoginCubit>().passwordController;
-    setupPasswordControllerListener();
-  }
+   // Set up the listener for the password text field
+  setupPasswordControllerListener();
+}
 
-  void setupPasswordControllerListener() {
-    passwordController.addListener(() {
-      setState(() {
-        hasLowercase = AppRegex.hasLowerCase(passwordController.text);
-        hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
-        hasNumber = AppRegex.hasNumber(passwordController.text);
-        hasMinLength = AppRegex.hasMinLength(passwordController.text);
-      });
+void setupPasswordControllerListener() {
+  // Add a listener to the text field to monitor changes in the password input
+  passwordController.addListener(() {
+    setState(() {
+      // Check if the password contains at least one lowercase letter
+      hasLowercase = AppRegex.hasLowerCase(passwordController.text);
+      // Check if the password contains at least one uppercase letter
+      hasUppercase = AppRegex.hasUpperCase(passwordController.text);
+      // Check if the password contains at least one special character
+      hasSpecialCharacters = AppRegex.hasSpecialCharacter(passwordController.text);
+      // Check if the password contains at least one number
+      hasNumber = AppRegex.hasNumber(passwordController.text);
+      // Check if the password has a minimum length of 8 characters
+      hasMinLength = AppRegex.hasMinLength(passwordController.text);
     });
+  });
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      // key: context.read<LoginCubit>().formKey,
+      key: context.read<LoginCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
