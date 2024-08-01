@@ -29,11 +29,18 @@ jobs:
         ruby-version: "3.3.4"
         bundler-cache: true
         working-directory: android
-        
+
+    - name: Install Bundler
+      run: gem install bundler
+      working-directory: android
+
+    - name: Install Gems
+      run: bundle install
+      working-directory: android
+
     - name: Build and Distribute App
       env:
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
       run: |
         bundle exec fastlane android firebase_distribution
       working-directory: android
-
