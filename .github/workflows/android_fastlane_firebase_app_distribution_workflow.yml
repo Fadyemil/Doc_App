@@ -34,5 +34,6 @@ jobs:
       env:
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
       run: |
+        flutter build apk --release --flavor Production --target lib/main_prod.dart --no-tree-shake-icons -v
         bundle exec fastlane android firebase_distribution --verbose
       working-directory: android

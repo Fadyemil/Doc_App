@@ -1,39 +1,90 @@
-name: Android Fastlane with Firebase App Distribution Workflow
+name: doc_app
+description: "A new Flutter project."
+publish_to: 'none' 
 
-on:
-  push:
-    branches:
-      - master
+version: 1.0.3+1
 
-jobs:
-  distribute_to_firebase:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout my repo code
-      uses: actions/checkout@v2
-    
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-    
-    - name: Install Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        channel: stable
+environment:
+  sdk: '>=3.4.3 <4.0.0'
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: "3.3.4"
-        bundler-cache: true
-        working-directory: android
-        
-    - name: Build and Distribute App
-      env:
-        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-      run: |
-        flutter build apk --release --flavor Production --target lib/main_prod.dart --no-tree-shake-icons -v
-        bundle exec fastlane android firebase_distribution --verbose
-      working-directory: android
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  
+   # State management
+  flutter_bloc: ^8.1.3
+   # Code generator (mainly used with cubit & retrofit)
+  # freezed: ^2.4.5
+  freezed_annotation: ^2.4.1
+   # for dependency injection
+  get_it: ^7.6.4
+   # Automatically generate code for converting to and from JSON by annotating Dart classes
+  # json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
+   # Networking
+  dio: ^5.3.3
+  retrofit: ^4.0.3
+  pretty_dio_logger: ^1.3.1
+   # localization
+  intl: ^0.19.0
+  easy_localization: ^3.0.3
+   # for splash screen
+  flutter_native_splash: ^2.3.5
+   # An SVG rendering and widget library for Flutter, which allows painting 
+  flutter_svg: ^2.0.9
+   # for adapting screen and font size.
+  flutter_screenutil: ^5.9.0
+  firebase_core: ^3.3.0
+   # Flutter library to load and cache network images.
+  cached_network_image: ^3.3.1
+   # reading and writing simple key-value pairs
+  shared_preferences: ^2.2.3
+   # provides API to store data in secure storage.
+  flutter_secure_storage: ^9.2.2
+   # easy way to add shimmer effect
+  shimmer: ^3.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  flutter_lints: ^3.0.0
+   #A build system for Dart code generation and modular compilation
+  build_runner: ^2.4.7
+  # Code generator (mainly used with cubit & retrofit)
+  freezed: ^2.4.5
+  # Automatically generate code for converting to and from JSON by annotating Dart classes
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.0.4
+
+
+flutter:
+
+ 
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/svgs/
+
+  
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
