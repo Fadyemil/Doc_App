@@ -1,15 +1,48 @@
+# Gradle files
+.gradle/
 gradle-wrapper.jar
-/.gradle
+gradlew
+gradlew.bat
+
+# Flutter and Dart specific files
 /captures/
-/gradlew
-/gradlew.bat
 /local.properties
-.env.development
-.env.properties
 GeneratedPluginRegistrant.java
 
-# Remember to never publicly share your keystore.
-# See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
-key.properties
+# Environment files
+.env.development
+.env.production
+
+# Keystore files (for Android)
 **/*.keystore
 **/*.jks
+key.properties
+
+# Flutter specific build outputs
+build/
+flutter_build/
+.dart_tool/
+.packages
+pubspec.lock
+
+# iOS specific build outputs
+ios/Flutter/Flutter.podspec
+ios/Podfile.lock
+ios/Pods
+ios/Runner.xcworkspace
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Xcode specific files
+*.xcworkspace
+*.xcuserdata
+*.xcshareddata
+*.lock
+.DS_Store
+.idea/
+.project
+.classpath
+*.iml
+*.ipr
