@@ -15,7 +15,7 @@ platform :android do
         # in Project settings firebase 
         app: "1:149120264085:android:a8e1fe1a231020bb89389c",
         # in cmd command firebase login:ci
-        firebase_cli_token: "1//03uHcbkdSS6sVCgYIARAAGAMSNwF-L9IrZ50WJXZONH8sj9R5Tk8PteWhjvx1inhwYWVwU9ciMggWEXz7WRNmreafS7t1mr2_W_M",
+        firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
         # constants
         android_artifact_type: "APK",
         # in build => app => outputs => flutter-apk => app-production-release.apk 
