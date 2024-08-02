@@ -1,3 +1,5 @@
+import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/features/home/ui/widget/doctors_blue_container.dart';
 import 'package:doc_app/features/home/ui/widget/hom_top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +13,12 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: const EdgeInsets.fromLTRB(20, 16, 20, 28),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HomTopBar(),
+              verticalSpace(16),
+              DoctorsBlueContainer(),
             ],
           ),
         ),
