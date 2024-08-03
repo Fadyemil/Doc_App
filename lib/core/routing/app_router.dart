@@ -2,6 +2,7 @@
 
 import 'package:doc_app/core/di/dependency_injection.dart';
 import 'package:doc_app/core/routing/routes.dart';
+import 'package:doc_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_app/features/home/ui/home_screen.dart';
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/login/ui/Login_screen.dart';
@@ -17,7 +18,7 @@ class AppRouter {
     final arguments = settings.arguments;
     switch (settings.name) {
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return funHomeScreen();
       case Routes.loginScreen:
         return funLoginScrren();
       case Routes.onBoardingScreen:
@@ -28,6 +29,15 @@ class AppRouter {
       default:
         return funDefauitscreen(settings);
     }
+  }
+
+  MaterialPageRoute<dynamic> funHomeScreen() {
+     return MaterialPageRoute(
+      builder: (context) => BlocProvider(
+        create: (context) => HomeCubit(getIt())..getSpecializations(),
+        child: const HomeScreen(),
+      ),
+    );
   }
 
   MaterialPageRoute<dynamic> funDefauitscreen(RouteSettings settings) {
