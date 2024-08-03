@@ -16,13 +16,22 @@ class DioFactory {
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
       addDioInterceptor();
+      addDioHandler();
       return dio!;
     } else {
       return dio!;
     }
   }
-  
- /// send in tremaile Response and request
+
+  static void addDioHandler() {
+    dio?.options.headers = {
+      'Accept': 'application/json',
+      'Authorization':
+          'Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzIyNzAxMDE2LCJleHAiOjE3MjI3ODc0MTYsIm5iZiI6MTcyMjcwMTAxNiwianRpIjoiM25Na1RXdW5Od1RaVEpRbSIsInN1YiI6IjE3MDkiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.RYFJHOjU507JYugCKRtbP1PPATzye9E9LssaznXMjv8'}', 
+    };
+  }
+
+  /// send in tremaile Response and request
   static void addDioInterceptor() {
     dio?.interceptors.add(
       PrettyDioLogger(
