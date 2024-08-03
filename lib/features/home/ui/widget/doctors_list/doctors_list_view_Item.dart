@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/theme/color.dart';
 import 'package:doc_app/core/theme/styles.dart';
+import 'package:doc_app/features/home/data/models/spec_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
-  const DoctorsListViewItem({super.key});
-
+  const DoctorsListViewItem({super.key, this.doctorsModels});
+  final Doctors? doctorsModels;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,18 +53,18 @@ class DoctorsListViewItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Name',
+                  doctorsModels?.name ?? 'Name',
                   style: TextStyles.font18DarkBlueBold,
                   overflow: TextOverflow.ellipsis,
                 ),
                 verticalSpace(5),
                 Text(
-                  '01153348583',
+                  '${doctorsModels?.degree ?? 'degree'} | ${doctorsModels?.phone ?? '01153348583'} ',
                   style: TextStyles.font12GrayMedium,
                 ),
                 verticalSpace(5),
                 Text(
-                  'Email',
+                  doctorsModels?.email ?? 'Email',
                   style: TextStyles.font12GrayMedium,
                 ),
               ],

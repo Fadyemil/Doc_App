@@ -1,13 +1,16 @@
 import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/theme/color.dart';
 import 'package:doc_app/core/theme/styles.dart';
+import 'package:doc_app/features/home/data/models/spec_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DoctorSpecialityItem extends StatelessWidget {
-  const DoctorSpecialityItem({super.key, required this.itemIndex});
+  const DoctorSpecialityItem(
+      {super.key, required this.itemIndex, required this.specializationsData});
   final int itemIndex;
+  final SpecializationsData? specializationsData;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class DoctorSpecialityItem extends StatelessWidget {
           ),
           verticalSpace(8),
           Text(
-            'Germany',
+            specializationsData?.name ?? 'special',
             style: TextStyles.font12DarkBlueRegular,
           ),
         ],
