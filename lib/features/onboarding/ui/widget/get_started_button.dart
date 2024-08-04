@@ -1,8 +1,11 @@
+// import 'package:doc_app/core/helpers/extensions.dart';
 import 'package:doc_app/core/helpers/extensions.dart';
+import 'package:doc_app/core/helpers/shared_pref_helper.dart';
 import 'package:doc_app/core/routing/routes.dart';
 import 'package:doc_app/core/theme/color.dart';
 import 'package:doc_app/core/theme/styles.dart';
 import 'package:flutter/material.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({super.key});
@@ -10,8 +13,11 @@ class GetStartedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        context.pushNamed(Routes.loginScreen);
+      onPressed: () async {
+        // SharedPreferences prefs = await SharedPreferences.getInstance();
+        // await prefs.setBool('isFirstTime', false);
+        SharedPrefHelper.setData('isFirstTime', false);
+        context.pushReplacementNamed(Routes.loginScreen);
       },
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(ColorsManager.mainBlue),
