@@ -2,13 +2,14 @@ import 'package:doc_app/core/di/dependency_injection.dart';
 // import 'package:doc_app/core/helpers/constants.dart';
 // import 'package:doc_app/core/helpers/extensions.dart';
 import 'package:doc_app/core/helpers/security.dart';
+import 'package:doc_app/core/helpers/shared_pref_helper.dart';
 // import 'package:doc_app/core/helpers/shared_pref_helper.dart';
 import 'package:doc_app/core/routing/app_router.dart';
 import 'package:doc_app/doc_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +19,11 @@ Future<void> main() async {
   // await checkIfLoggedInUser();
   setupGetIt();
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  // bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+  // bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  bool isFirstTime = SharedPrefHelper.getBool('isFirstTime') ?? true;
+  bool isLoggedIn = SharedPrefHelper.getBool('isLoggedIn') ?? false;
   runApp(
     DocApp(
       appRouter: AppRouter(),

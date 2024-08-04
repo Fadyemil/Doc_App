@@ -16,7 +16,7 @@ class GetStartedButton extends StatelessWidget {
       onPressed: () async {
         // SharedPreferences prefs = await SharedPreferences.getInstance();
         // await prefs.setBool('isFirstTime', false);
-        SharedPrefHelper.setData('isFirstTime', false);
+       await SharedPrefHelper.setData('isFirstTime', false);
         context.pushReplacementNamed(Routes.loginScreen);
       },
       style: ButtonStyle(

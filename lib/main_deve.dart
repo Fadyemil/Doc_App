@@ -16,14 +16,10 @@ Future<void> main() async {
   await dotenv.load(fileName: Security.filename);
   // To fix texts being hidden bug in flutter_screenutil in release mode.
   await ScreenUtil.ensureScreenSize();
-  // await checkIfLoggedInUser();
   setupGetIt();
   WidgetsFlutterBinding.ensureInitialized();
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-  // bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
-  // bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-  bool isFirstTime = SharedPrefHelper.getBool('isFirstTime') ?? true;
-  bool isLoggedIn = SharedPrefHelper.getBool('isLoggedIn') ?? false;
+  bool isFirstTime = await SharedPrefHelper.getBool('isFirstTime') ?? true;
+  bool isLoggedIn = await SharedPrefHelper.getBool('isLoggedIn') ?? false;
   runApp(
     DocApp(
       appRouter: AppRouter(),
