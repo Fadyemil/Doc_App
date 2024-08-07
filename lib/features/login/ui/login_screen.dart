@@ -1,3 +1,4 @@
+import 'package:doc_app/core/helpers/shared_pref_helper.dart';
 import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/theme/styles.dart';
 import 'package:doc_app/core/widget/app_text_button.dart.dart';
@@ -10,6 +11,7 @@ import 'package:doc_app/features/login/ui/widget/terms_and_conditions_text.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -50,7 +52,12 @@ class LoginScreen extends StatelessWidget {
                       // buttonHeight: 56.h,
                       buttonText: "Login",
                       textStyle: TextStyles.font16WhiteSemiBold,
-                      onPressed: () {
+                      onPressed: () async {
+                        // // Perform login logic here
+                        // SharedPreferences prefs =
+                        //     await SharedPreferences.getInstance();
+                        // await prefs.setBool('isLoggedIn', true);
+                        await SharedPrefHelper.setData('isLoggedIn', true);
                         validateThenDoLogin(context);
                       },
                     ),
